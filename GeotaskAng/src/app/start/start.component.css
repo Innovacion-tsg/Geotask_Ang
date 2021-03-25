@@ -1,0 +1,43 @@
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+.background-outlet-color {
+    /* background-color: white; */
+}
+
+.mat-sidenav-container {
+  background-color: #ffffff;
+}
+
+.sidenav-buttons {
+  padding-top: 10px;
+}
+
+.sidenav-items-adjust {
+  padding-left: 15px;;
+}
+
+.mat-toolbar {
+  position: relative;
+  z-index: 20;
+}
+
+.sidenav-logo {
+  max-width: 200px;
+  background-color: #000000;
+  padding-bottom: 20px;
+}
+
+.sidenav-content {
+  display: flex;
+  justify-content: center;
+}
+
+.align{
+    text-align: center;
+}

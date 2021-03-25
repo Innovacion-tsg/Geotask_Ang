@@ -70,9 +70,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    let credentials = JSON.stringify(this.form.value);
-    this.isLoading = true
-    this.router.navigate(['/Start']);
+    this.isLoading = true;
+    this.router.navigate(['/start']);
     this.isLoading = false;
   }
 }

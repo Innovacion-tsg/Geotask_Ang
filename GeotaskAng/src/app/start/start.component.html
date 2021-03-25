@@ -1,1 +1,65 @@
-<p>start works!</p>
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav  [opened]="false">
+        <div  class="align" style="padding-top: 20px; padding-bottom: 20px;" >
+            <p >
+                Menu Principal
+            </p>
+        </div>
+        <div class="sidenav-content">
+            <div class="sidenav-buttons">
+                <p>
+                    <button mat-button  [routerLink]="['Home']">
+                        <mat-icon color="primary">task</mat-icon>
+                        <span class="sidenav-items-adjust">
+                            Asignar tarea
+                        </span>
+                    </button>
+                </p>
+                <p>
+                    <button mat-button  [routerLink]="['Home']">
+                        <mat-icon color="primary">people</mat-icon>
+                        <span class="sidenav-items-adjust">
+                            Administracion de Usuarios
+                        </span>
+                    </button>
+                </p>
+                <p>
+                    <button disabled mat-button   [routerLink]="['Reportes']">
+                        <mat-icon color="primary">assignment</mat-icon>
+                        <span class="sidenav-items-adjust">
+                            Reportes
+                        </span>
+                    </button>
+                </p>
+
+            </div>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content style="background: #1b1e27;;">
+        <mat-toolbar color="primary" [class.mat-elevation-z8]="true">
+            <mat-toolbar-row>
+                <button matTooltip="Menu de la aplicación" mat-icon-button aria-label="Example icon-button with a heart icon" (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <button matTooltip="Regresar al inicio" mat-button style="font-size: 20px;" [routerLink]="['Home']">Geotask</button>
+                <span class="example-spacer"></span>
+                <mat-progress-spinner *ngIf="isLoading2" mode="indeterminate"></mat-progress-spinner>
+                <button matTooltip="Información sobre tu perfil" mat-button [matMenuTriggerFor]="menu">
+                    {{user.username}} <mat-icon>account_circle</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    
+                    <button mat-menu-item color="primary" (click)="logOut()">
+                      <mat-icon color="primary">exit_to_app</mat-icon>
+                      <span>Salir</span>
+                    </button>
+                  </mat-menu>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <div class="background-outlet-color">
+            <!-- <router-outlet [events]="eventsSubject.asObservable()"></router-outlet> -->
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

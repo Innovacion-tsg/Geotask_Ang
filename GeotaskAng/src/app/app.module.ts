@@ -39,13 +39,16 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
 
 import { HttpClientModule } from '@angular/common/http';
-
+import { HomeComponent } from './home/home.component';
+import { ErrorSnackbarComponent } from './home/error-snackbar/error-snackbar.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     StartComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HomeComponent,
+    ErrorSnackbarComponent
   ],
   imports: [
     BrowserModule,
