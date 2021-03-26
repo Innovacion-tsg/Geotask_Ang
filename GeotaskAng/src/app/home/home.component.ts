@@ -5,15 +5,15 @@ import { MatDialog} from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import OlVectorSource from 'ol/source/Vector';
-import OlVectorLayer from 'ol/layer/Vector';
-import { Style, Fill, Stroke, Icon, Text } from 'ol/style';
 import Map from 'ol/Map';
-import { proj, View } from 'ol';
-import OlFeature from 'ol/Feature';
+import View from 'ol/View';
+import VectorLayer from 'ol/layer/Vector';
+import Style from 'ol/style/Style';
+import Icon from 'ol/style/Icon';
+import OSM from 'ol/source/OSM';
+import * as olProj from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
-import OlPoint from 'ol/geom/Point';
 import { fromLonLat, transform } from 'ol/proj';
 
 import { StatusService } from '../start/status.service';
@@ -25,36 +25,28 @@ import { ErrorSnackbarComponent } from 'src/app/home/error-snackbar/error-snackb
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   map: Map;
-  isLoading = false;
-  token;
-  vectorSource;
-  vectorLayer;
-  companies;
-  telefonica = [];
-  marker;
-  marker2;
-  marker3;
-  markersArray = [];
-  markerStyle;
-  alerts = [];
-  SNACKBAR_DURATION = 5;
-  private subscription: Subscription;
-  public message;
-  connection: boolean;
-  controlVariable = 0;
-  searchMenu = false;
-  disableOption = false;
-  redirectSearch = new EventEmitter();
-  searchValue;
-  listalert = [];  
-
+  
   ngOnDestroy(): void {
     
   }
 
   ngOnInit(): void {
+    this.map = new Map({
+      target: 'map',
+      layers: [
+        new TileLayer({
+          source: new XYZ({
+            url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          })
+        })
+      ],
+      view: new View({
+        center: fromLonLat([-74.0817500, 4.6097100]),
+        maxZoom: 19,
+        zoom: 15
+      })
+    });
   }
 
 }

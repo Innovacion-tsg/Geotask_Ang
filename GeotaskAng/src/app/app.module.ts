@@ -41,6 +41,9 @@ import { MatRadioModule } from '@angular/material/radio';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { ErrorSnackbarComponent } from './home/error-snackbar/error-snackbar.component';
+import { UsersComponent } from './users/users.component';
+import { TaskComponent } from './task/task.component';
+import { ReportComponent } from './report/report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +51,10 @@ import { ErrorSnackbarComponent } from './home/error-snackbar/error-snackbar.com
     StartComponent,
     NotFoundComponent,
     HomeComponent,
-    ErrorSnackbarComponent
+    ErrorSnackbarComponent,
+    UsersComponent,
+    TaskComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,

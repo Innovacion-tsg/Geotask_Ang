@@ -1,0 +1,21 @@
+<mat-grid-list style="background: #f72bb3;;" cols="3" rowHeight="2:1" >
+    <mat-grid-tile *ngFor="let option of options">
+        <mat-card class="mat-elevation-z4">
+        <mat-card-header>
+          <mat-card-title >{{option.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{option.description}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button *ngFor="let buttons of option.options">
+            <mat-icon color="primary">{{buttons.icono}}</mat-icon>
+            <span class="sidenav-items-adjust">
+            {{buttons.name}}
+            </span>
+            </button>
+        </mat-card-actions>
+      </mat-card></mat-grid-tile>
+  </mat-grid-list>

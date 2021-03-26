@@ -8,23 +8,31 @@
         <div class="sidenav-content">
             <div class="sidenav-buttons">
                 <p>
-                    <button mat-button  [routerLink]="['Home']">
+                    <button mat-button  [routerLink]="['home']">
+                        <mat-icon color="primary">home</mat-icon>
+                        <span class="sidenav-items-adjust">
+                            Inicio
+                        </span>
+                    </button>
+                </p>
+                <p>
+                    <button mat-button  [routerLink]="['task']">
                         <mat-icon color="primary">task</mat-icon>
                         <span class="sidenav-items-adjust">
-                            Asignar tarea
+                            Tareas
                         </span>
                     </button>
                 </p>
                 <p>
-                    <button mat-button  [routerLink]="['Home']">
+                    <button mat-button  [routerLink]="['users']">
                         <mat-icon color="primary">people</mat-icon>
                         <span class="sidenav-items-adjust">
-                            Administracion de Usuarios
+                            Usuarios
                         </span>
                     </button>
                 </p>
                 <p>
-                    <button disabled mat-button   [routerLink]="['Reportes']">
+                    <button disabled mat-button   [routerLink]="['report']">
                         <mat-icon color="primary">assignment</mat-icon>
                         <span class="sidenav-items-adjust">
                             Reportes
@@ -42,7 +50,7 @@
                 <button matTooltip="Menu de la aplicación" mat-icon-button aria-label="Example icon-button with a heart icon" (click)="sidenav.toggle()">
                     <mat-icon>menu</mat-icon>
                 </button>
-                <button matTooltip="Regresar al inicio" mat-button style="font-size: 20px;" [routerLink]="['Home']">Geotask</button>
+                <button matTooltip="Regresar al inicio" mat-button style="font-size: 20px;" [routerLink]="['home']">Geotask</button>
                 <span class="example-spacer"></span>
                 <mat-progress-spinner *ngIf="isLoading2" mode="indeterminate"></mat-progress-spinner>
                 <button matTooltip="Información sobre tu perfil" mat-button [matMenuTriggerFor]="menu">

@@ -70,7 +70,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    let credentials = JSON.stringify(this.form.value);
     this.isLoading = true;
+    localStorage.clear();
+    localStorage.setItem('user', "{\"token\":\"d7b476da18fc18b93bd7f056c65f2ed2d35f9ae5\",\"first_name\":\"Diego\",\"email\":\"desarrollo2@tsg.net.co\",\"is_staff\":true,\"username\":\"diegoariasm233\"}")
     this.router.navigate(['/start']);
     this.isLoading = false;
   }

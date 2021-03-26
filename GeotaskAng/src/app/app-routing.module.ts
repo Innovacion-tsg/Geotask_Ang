@@ -4,6 +4,9 @@ import { LoginComponent} from './login/login.component';
 import { StartComponent} from './start/start.component';
 import { HomeComponent} from './home/home.component';
 import { NotFoundComponent} from './not-found/not-found.component';
+import { TaskComponent} from './task/task.component';
+import { UsersComponent} from './users/users.component';
+import { ReportComponent} from './report/report.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch:'full'},
@@ -13,6 +16,18 @@ const routes: Routes = [
     {
       path: 'home',
       component: HomeComponent
+    },
+    {
+      path: 'task',
+      component: TaskComponent
+    },
+    {
+      path: 'users',
+      component: UsersComponent
+    },
+    {
+      path: 'report',
+      component: ReportComponent
     }
     ]
   },
