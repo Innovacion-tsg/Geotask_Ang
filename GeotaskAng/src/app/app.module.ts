@@ -37,6 +37,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
@@ -89,7 +90,8 @@ import { ReportComponent } from './report/report.component';
     MatRippleModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    MatRadioModule
+    MatRadioModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
