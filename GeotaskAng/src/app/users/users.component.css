@@ -2,7 +2,27 @@ table {
     width: 100%;
   }
   
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.custom-text-button,
+.custom-outlined-button {
+  --mdc-theme-primary: #FEDBD0;
+  --mdc-theme-on-primary: #442C2E;
+}
+
+.parent2 {
+  position: relative;
+  border: 1px solid blue;
+  width: 95%;
+}
+
+.main-div{
+  position:relative;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
