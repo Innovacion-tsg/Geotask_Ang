@@ -11,6 +11,19 @@ interface companiesObj{
   is_active: Boolean;
 }
 
+interface UserObject{
+  first_name : String;
+  password:String;
+  role:String;
+  iduser:Int16Array;
+  email:String;
+  password_hash:String;
+  password_salt:String;
+  last_name: String;
+  idrole: Int16Array;
+  is_active: Boolean;
+}
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -96,6 +109,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading=true;
+    
     this.http.get('http://'+GlobalConstants.report_server_address+'/users', {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -165,7 +179,8 @@ export class UsersComponent implements OnInit {
       idspecialty:[null, null],
       idcompany:[null, null],
       ideps:[null, null],
-      idarl:[null, null]
+      idarl:[null, null],
+      rh: [null,null]
     });
   }
 
@@ -210,19 +225,57 @@ export class UsersComponent implements OnInit {
 
   onSubmit(event) {
     event.preventDefault();
-    debugger;
     let info=this.form.value;
     info.idrole=parseInt(info.idrole);
+    
     if (this.form.valid) {
       this.http.post('http://'+GlobalConstants.report_server_address+'/users', info,{
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         }),
-        responseType: 'text' as 'json'
+        responseType: 'json'
       }).subscribe(response => {
         debugger;
-        let a=response;
+        let value : any = response;
+        value.password_hash="";
+        value.password_salt="";
+        value.password="";
+        this.users.push(value);
+        this.dataSource=new MatTableDataSource(this.users);
+        this.dataSource.paginator = this.paginator;
+        if(info.idrole === 3){
+          info.iduser = value.iduser;
+          info.phone = info.phone.toString();
+          info.identification = info.identification.toString();
+          info.ididentification_type = parseInt(info.ididentification_type);
+          info.idspecialty = parseInt(info.idspecialty);
+          info.idcompany= parseInt(info.idcompany);
+          info.idarl = parseInt(info.idarl);
+          info.ideps = parseInt(info.ideps);
+          this.http.post('http://'+GlobalConstants.report_server_address+'/users_info', info,{
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+          }),
+          responseType: 'text' as 'json'
+          }).subscribe(response => {
+            debugger;
+            let a = response;
+          });
+        }
+        this.clearMe();
       });
     }
   }
+
+
+  clearMe(): void {
+    this.form.reset();
+    Object.keys(this.form.controls).forEach(key =>{
+       this.form.controls[key].setErrors(null)
+    });
+  }
+
+
 }
+
+
