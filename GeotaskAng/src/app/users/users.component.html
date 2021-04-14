@@ -1,141 +1,3 @@
-<!--<mat-grid-list style="background: #b334da;;" cols="4" rowHeight="2:1" >
-  <mat-grid-tile *ngFor="let option of options">
-      <mat-card class="mat-elevation-z4">
-      <mat-card-header>
-        <mat-card-title >{{option.name}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          {{option.description}}
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button *ngFor="let buttons of option.options">
-          <mat-icon color="primary">{{buttons.icono}}</mat-icon>
-          <span class="sidenav-items-adjust">
-          {{buttons.name}}
-          </span>
-          </button>
-      </mat-card-actions>
-    </mat-card></mat-grid-tile>
-</mat-grid-list>-->
-
-<!--*ngIf="formCreate"-->
-<div class="example-box">
-  <h1>Crear Usuario</h1>
-  <button style="position:absolute; top:1%; right:1%; color:black" mat-icon-button (click)=toggleCreate() aria-label="Eliminar Usuario">
-    <mat-icon>close</mat-icon>
-  </button>
-  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
-        <input matInput class="form-control" id="first_name" formControlName="first_name" placeholder="Ingrese nombre">
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Apellido</mat-label>
-        <input matInput class="form-control" id="last_name" formControlName="last_name" placeholder="Ingrese nombre">
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Correo</mat-label>
-        <input matInput class="form-control" id="email" formControlName="email" placeholder="Ingrese el correo, recuerde que este sera el usuario">
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Contraseña</mat-label>
-        <input matInput type="password" class="form-control" id="password" formControlName="password" placeholder="Ingrese su contraseña">
-        <mat-icon matSuffix>vpn_key</mat-icon>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Rol</mat-label>
-        <mat-select [(value)]="selectedValue" name="idrole" class="form-control" id="idrole" formControlName="idrole">
-          <mat-option *ngFor="let rol of roles" value="{{rol.idrole}}">{{rol.role}}</mat-option>
-        </mat-select>
-        </mat-form-field>
-    </p>
-    <span *ngIf="selectedValue === '3'">
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Tipo de identificacion</mat-label>
-          <mat-select class="form-control" id="ididentification_type" formControlName="ididentification_type">
-            <mat-option *ngFor="let i of it" value="{{i.ididentification_type}}">{{i.identification_type}}</mat-option>
-          </mat-select>
-          </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Identificacion</mat-label>
-          <input matInput type="number" class="form-control" id="identification" formControlName="identification" placeholder="Ingrese el numero de identificacion" onkeydown="return event.keyCode !== 69">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Celular</mat-label>
-          <input matInput type="number"  class="form-control" id="phone" formControlName="phone" placeholder="Ingrese el numero de celular" onkeydown="return event.keyCode !== 69">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Especialidad</mat-label>
-          <mat-select class="form-control" id="idspecialty" formControlName="idspecialty">
-            <mat-option *ngFor="let i of specialties" value="{{i.idspecialty}}">{{i.specialty}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Empresa</mat-label>
-          <mat-select class="form-control" id="idcompany" formControlName="idcompany">
-            <mat-option *ngFor="let i of companies" value="{{i.idcompany}}">{{i.company}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>EPS</mat-label>
-          <mat-select class="form-control" id="ideps" formControlName="ideps">
-            <mat-option *ngFor="let i of eps" value="{{i.idcompany}}">{{i.company}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>ARL</mat-label>
-          <mat-select class="form-control" id="idarl" formControlName="idarl">
-            <mat-option *ngFor="let i of arl" value="{{i.idcompany}}">{{i.company}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>RH</mat-label>
-          <mat-select class="form-control" id="rh" formControlName="rh">
-            <mat-option  value="A+">A+</mat-option>
-            <mat-option  value="A-">A-</mat-option>
-            <mat-option  value="O+">O+</mat-option>
-            <mat-option  value="O-">O-</mat-option>
-            <mat-option  value="B+">B+</mat-option>
-            <mat-option  value="B-">B-</mat-option>
-            <mat-option  value="AB+">AB+</mat-option>
-            <mat-option  value="AB-">AB-</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </p>
-    </span>
-    <p>
-      <button  mat-raised-button color="primary" [class.mat-elevation-z5]="true" style="position:absolute; right:1%; bottom: 1%; background-color:green">Crear</button>
-    </p>
-  </form>
-</div>
-    
-
 <div class="main-div">
   <mat-card class="parent2"> 
     <mat-card-title class="center" style="font-size: 1cm;">INTERFAZ DE USUARIO</mat-card-title>
@@ -150,35 +12,35 @@
       <span class="mdc-button__label">Crear Usuario</span>
     </button>
     </div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
       <mat-card class="mat-elevation-z4">
       <!-- Position Column -->
       <ng-container matColumnDef="iduser">
-        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
         <td mat-cell *matCellDef="let element"> {{element.iduser}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="first_name">
-        <th mat-header-cell *matHeaderCellDef> first_name </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> first_name </th>
         <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="last_name">
-        <th mat-header-cell *matHeaderCellDef> Apellido </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
         <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Correo </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
         <td mat-cell *matCellDef="let element"> {{element.email}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef> Rol </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
         <td mat-cell *matCellDef="let element"> {{element.role}} </td>
       </ng-container>
 
@@ -206,6 +68,10 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No se encuentra informacion para: "{{input.value}}"</td>
+      </tr>
+
       </mat-card>
 
       
@@ -213,4 +79,124 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20, 100]" showFirstLastButtons></mat-paginator>
 
   </mat-card>
+</div>
+
+<div *ngIf="formCreate">
+  <div class="example-box">
+    <h1 *ngIf=isAdd>Crear Usuario</h1> 
+    <h1 *ngIf=!isAdd>Editar Usuario</h1>
+    <button style="position:absolute; top:1%; right:1%; color:black" mat-icon-button (click)=toggleCreate() aria-label="Eliminar Usuario">
+      <mat-icon>close</mat-icon>
+    </button>
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Rol</mat-label>
+          <mat-select [(value)]="selectedValue" name="idrole" class="form-control" id="idrole" formControlName="idrole">
+            <mat-option *ngFor="let rol of roles" value="{{rol.idrole}}">{{rol.role}}</mat-option>
+          </mat-select>
+          </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput class="form-control" id="first_name" formControlName="first_name" placeholder="Ingrese nombre">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido</mat-label>
+          <input matInput class="form-control" id="last_name" formControlName="last_name" placeholder="Ingrese nombre">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Correo</mat-label>
+          <input matInput class="form-control" id="email" formControlName="email" placeholder="Ingrese el correo, recuerde que este sera el usuario">
+        </mat-form-field>
+      </p>
+      <p *ngIf=isAdd>
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" class="form-control" id="password" formControlName="password" placeholder="Ingrese su contraseña">
+          <mat-icon matSuffix>vpn_key</mat-icon>
+        </mat-form-field>
+      </p>
+      <span *ngIf="selectedValue === '3'">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo de identificacion</mat-label>
+            <mat-select class="form-control" id="ididentification_type" formControlName="ididentification_type">
+              <mat-option *ngFor="let i of it" value="{{i.ididentification_type}}">{{i.identification_type}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Identificacion</mat-label>
+            <input matInput type="number" class="form-control" id="identification" formControlName="identification" placeholder="Ingrese el numero de identificacion" onkeydown="return event.keyCode !== 69">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Celular</mat-label>
+            <input matInput type="number"  class="form-control" id="phone" formControlName="phone" placeholder="Ingrese el numero de celular" onkeydown="return event.keyCode !== 69">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Especialidad</mat-label>
+            <mat-select class="form-control" id="idspecialty" formControlName="idspecialty">
+              <mat-option *ngFor="let i of specialties" value="{{i.idspecialty}}">{{i.specialty}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Empresa</mat-label>
+            <mat-select class="form-control" id="idcompany" formControlName="idcompany">
+              <mat-option *ngFor="let i of companies" value="{{i.idcompany}}">{{i.company}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>EPS</mat-label>
+            <mat-select class="form-control" id="ideps" formControlName="ideps">
+              <mat-option *ngFor="let i of eps" value="{{i.idcompany}}">{{i.company}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>ARL</mat-label>
+            <mat-select class="form-control" id="idarl" formControlName="idarl">
+              <mat-option *ngFor="let i of arl" value="{{i.idcompany}}">{{i.company}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>RH</mat-label>
+            <mat-select class="form-control" id="rh" formControlName="rh">
+              <mat-option  value="A+">A+</mat-option>
+              <mat-option  value="A-">A-</mat-option>
+              <mat-option  value="O+">O+</mat-option>
+              <mat-option  value="O-">O-</mat-option>
+              <mat-option  value="B+">B+</mat-option>
+              <mat-option  value="B-">B-</mat-option>
+              <mat-option  value="AB+">AB+</mat-option>
+              <mat-option  value="AB-">AB-</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+      </span>
+      <p>
+        <button *ngIf=isAdd mat-raised-button color="primary" [class.mat-elevation-z5]="true" style="position:absolute; right:1%; bottom: 1%; background-color:green">Crear</button>
+      </p>
+      <p>
+        <button *ngIf=!isAdd mat-raised-button color="primary" [class.mat-elevation-z5]="true" style="position:absolute; right:1%; bottom: 1%; background-color:rgb(34, 34, 231)">Editar</button>
+      </p>
+    </form>
+  </div>
 </div>
