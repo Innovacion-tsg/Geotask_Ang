@@ -4,8 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import{ GlobalConstants } from '../global-constants';
-import { NgForm, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 interface companiesObj{
   idcompany: Int16Array;
   company: String;
@@ -35,7 +34,7 @@ export class UsersComponent implements OnInit {
   displayedColumns: string[] = ['iduser','first_name','last_name','email','role','is_active','button'];
   dataSource;
   formCreate=false;
-  isAdd=true;
+  isAdd=false;
   formDelete=false;
   form: FormGroup;
 
@@ -261,9 +260,6 @@ export class UsersComponent implements OnInit {
     this.clearMe();
   }
 
-  validateForm(){
-
-  }
 
   onSubmit(event) {
     event.preventDefault();

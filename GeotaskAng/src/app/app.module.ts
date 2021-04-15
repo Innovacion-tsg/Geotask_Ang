@@ -45,6 +45,7 @@ import { ErrorSnackbarComponent } from './home/error-snackbar/error-snackbar.com
 import { UsersComponent } from './users/users.component';
 import { TaskComponent } from './task/task.component';
 import { ReportComponent } from './report/report.component';
+import { StationsComponent } from './stations/stations.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +56,8 @@ import { ReportComponent } from './report/report.component';
     ErrorSnackbarComponent,
     UsersComponent,
     TaskComponent,
-    ReportComponent
+    ReportComponent,
+    StationsComponent
   ],
   imports: [
     BrowserModule,

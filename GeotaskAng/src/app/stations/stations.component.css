@@ -1,0 +1,57 @@
+table {
+    width: 100%;
+  }
+  
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.custom-text-button,
+.custom-outlined-button {
+  --mdc-theme-primary: #FEDBD0;
+  --mdc-theme-on-primary: #442C2E;
+}
+
+.parent2 {
+  position: relative;
+  border: 1px solid blue;
+  width: 95%;
+}
+
+.main-div{
+  position:relative;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.center{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.example-box {
+  width: 80%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: solid 1px #1d05ec;
+  color: rgba(0, 0, 0, 0.87);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  position: relative;
+  left:10%;
+  top:50px;
+  align-content: center;
+  z-index: 1;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
