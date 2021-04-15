@@ -1,21 +1,143 @@
-<mat-grid-list style="background: #f72bb3;;" cols="3" rowHeight="2:1" >
-    <mat-grid-tile *ngFor="let option of options">
-        <mat-card class="mat-elevation-z4">
-        <mat-card-header>
-          <mat-card-title >{{option.name}}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>
-            {{option.description}}
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button *ngFor="let buttons of option.options">
-            <mat-icon color="primary">{{buttons.icono}}</mat-icon>
-            <span class="sidenav-items-adjust">
-            {{buttons.name}}
-            </span>
-            </button>
-        </mat-card-actions>
-      </mat-card></mat-grid-tile>
-  </mat-grid-list>
+<div class="main-div">
+  <mat-card class="parent2"> 
+    <mat-card-title class="center" style="font-size: 1cm;">INTERFAZ DE TAREAS</mat-card-title>
+    <div class="center">
+    <mat-form-field style="width: 75%;">
+      <mat-label>Filtro</mat-label>
+      <input  matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Admin" #input>
+    </mat-form-field>
+    <button style="position:relative ;left:20px;" class="mdc-button" (click)=toggleCreate()>
+      <span class="mdc-button__ripple"></span>
+      <i class="material-icons mdc-button__icon" aria-hidden="true" style="color: green">add_box</i>
+      <span class="mdc-button__label">Crear Tarea</span>
+    </button>
+    </div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+      <mat-card class="mat-elevation-z4">
+      <!-- Position Column -->
+      <ng-container matColumnDef="idtask">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.idtask}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="task_type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
+        <td mat-cell *matCellDef="let element"> {{element.task_type}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tecnico </th>
+        <td mat-cell *matCellDef="let element"> {{element.user}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="priority">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Prioridad </th>
+        <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="station">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sede </th>
+        <td mat-cell *matCellDef="let element"> {{element.station}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="device">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dispositivo </th>
+        <td mat-cell *matCellDef="let element"> {{element.device}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="button">
+        <th mat-header-cell *matHeaderCellDef >Opciones</th>
+        <td mat-cell *matCellDef="let element" > 
+          <button mat-icon-button color="primary" (click)=EditTask(element) aria-label="Editar Usuario">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No se encuentra informacion para: "{{input.value}}"</td>
+      </tr>
+
+      </mat-card>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 100]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>
+
+<div *ngIf="formCreate">
+  <div class="example-box">
+      <h1 *ngIf=isAdd>Crear Tarea</h1> 
+      <h1 *ngIf=!isAdd>Editar Tarea</h1>
+      <button style="position:absolute; top:1%; right:1%; color:black" mat-icon-button (click)=toggleCreate()>
+      <mat-icon>close</mat-icon>
+      </button>
+      <form class="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+      <p>
+          <mat-form-field appearance="outline">
+              <mat-label>Descripcion</mat-label>
+              <input matInput class="form-control" id="description" formControlName="description" placeholder="Ingrese la descripcion de la tarea">
+          </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field appearance="outline">
+              <mat-label>Tipo</mat-label>
+              <mat-select name="idtask_type" class="form-control" id="idtask_type" formControlName="idtask_type">
+                  <mat-option *ngFor="let task_type1 of tasks_types" value="{{task_type1.idtask_type}}">{{task_type1.task_type}}</mat-option>
+              </mat-select>
+          </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Usuario</mat-label>
+            <mat-select name="iduser" class="form-control" id="iduser" formControlName="iduser">
+                <mat-option *ngFor="let user of users" value="{{user.iduser}}">{{user.email}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Prioridad</mat-label>
+            <mat-select name="idpriority" class="form-control" id="idpriority" formControlName="idpriority">
+                <mat-option *ngFor="let priority of priorities" value="{{priority.idpriority}}">{{priority.priority}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Sede</mat-label>
+            <mat-select name="idstation" class="form-control" id="idstation" formControlName="idstation">
+                <mat-option *ngFor="let station of stations" value="{{station.idstation}}">{{station.station}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Dispositivo</mat-label>
+            <mat-select name="iddevice" class="form-control" id="iddevice" formControlName="iddevice">
+                <mat-option *ngFor="let device of devices" value="{{device.iddevice}}">{{device.device}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+          <button *ngIf=isAdd mat-raised-button color="primary" [class.mat-elevation-z5]="true" style="position:absolute; right:1%; bottom: 1%; background-color:green">Crear</button>
+      </p>
+      <p>
+          <button *ngIf=!isAdd mat-raised-button color="primary" [class.mat-elevation-z5]="true" style="position:absolute; right:1%; bottom: 1%; background-color:rgb(34, 34, 231)">Editar</button>
+      </p>
+      </form>
+  </div>
+</div>
