@@ -46,6 +46,7 @@ import { UsersComponent } from './users/users.component';
 import { TaskComponent } from './task/task.component';
 import { ReportComponent } from './report/report.component';
 import { StationsComponent } from './stations/stations.component';
+import { CompaniesComponent } from './companies/companies.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,8 @@ import { StationsComponent } from './stations/stations.component';
     UsersComponent,
     TaskComponent,
     ReportComponent,
-    StationsComponent
+    StationsComponent,
+    CompaniesComponent
   ],
   imports: [
     BrowserModule,

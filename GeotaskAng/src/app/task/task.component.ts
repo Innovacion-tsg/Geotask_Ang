@@ -40,7 +40,7 @@ export class TaskComponent implements OnInit {
         'Content-Type': 'application/json'
       })
     }).subscribe(response => {
-      this.stations=response;
+      this.tasks=response;
       this.UpdateTable();
     });
     this.http.get('http://'+GlobalConstants.report_server_address+'/tasks_types', {
@@ -92,7 +92,7 @@ export class TaskComponent implements OnInit {
 
 
   UpdateTable(){
-    this.dataSource=new MatTableDataSource(this.stations);
+    this.dataSource=new MatTableDataSource(this.tasks);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -104,7 +104,8 @@ export class TaskComponent implements OnInit {
       iduser: [null,[Validators.required]],
       idpriority: [null, [Validators.required]],
       idstation: [null, [Validators.required]],
-      iddevice: [null, [Validators.required]]
+      iddevice: [null, [Validators.required]],
+      estimated_date: [null, [Validators.required]]
     });
   }
 
@@ -134,7 +135,7 @@ export class TaskComponent implements OnInit {
  
   findTask(idtask): any{
     let a=null;
-    this.stations.forEach(element => {
+    this.tasks.forEach(element => {
       if(element.idtask == idtask){
         a=element;
       }
@@ -144,11 +145,8 @@ export class TaskComponent implements OnInit {
   
   onSubmit(event) {
     event.preventDefault();
-    debugger;
     let info=this.form.value;
-    info['idstatus']=1;
-    info['estimated_date']=null;
-    info['creation_date']=null;
+    info['creation_date']=info.estimated_date;
     info['finish_date']=null;
     info.idtask_type= parseInt(info.idtask_type);
     info.iduser= parseInt(info.iduser);
@@ -157,13 +155,22 @@ export class TaskComponent implements OnInit {
     info.iddevice= parseInt(info.iddevice);
     if(this.form.valid){
       if (this.isAdd) {
+        info['idstatus']=1;
+        info['is_active']=true;
         this.http.post('http://'+GlobalConstants.report_server_address+'/tasks', info,{
           headers: new HttpHeaders({
             'Content-Type': 'application/json'
           }),
           responseType: 'json'
         }).subscribe(response => {
+          debugger;
           let value : any = response;
+          value.status=this.searchAny(info.idstatus,"status");
+          value.task_type=this.searchAny(info.idtask_type,"task_type");
+          value.user=this.searchAny(info.iduser,"user");
+          value.priority=this.searchAny(info.idpriority,"priority");
+          value.station=this.searchAny(info.idstation,"station");
+          value.device=this.searchAny(info.iddevice,"device");
           this.tasks.push(value);
           this.UpdateTable();
           this.clearMe();
@@ -172,18 +179,29 @@ export class TaskComponent implements OnInit {
         let s=this.findTask(this.element.idtask);
         let index: number = this.tasks.indexOf(s);
         info['idtask']=this.element.idtask;
+        info['idstatus']=parseInt(this.element.idstatus);
+        info['is_active']=this.element.is_active;
         this.http.put('http://'+GlobalConstants.report_server_address+'/tasks', info,{
           headers: new HttpHeaders({
             'Content-Type': 'application/json'
           }),
           responseType: 'text' as 'json'
           }).subscribe(response => {
-            this.tasks[index].description=info.desciption;
-            this.tasks[index].idtask_type=info.idtask_type;
-            this.tasks[index].iduser=info.iduser;
-            this.tasks[index].idpriority=info.idpriority;
-            this.tasks[index].idstation=info.idstation;
-            this.tasks[index].iddevice=info.iddevice;
+            this.tasks[index].description=info.description;
+            this.tasks[index].creation_date=info.creation_date;
+            this.tasks[index].estimated_date=info.estimated_date;
+            this.tasks[index].idtask_type=info.idtask_type.toString();
+            this.tasks[index].task_type=this.searchAny(info.idtask_type,"task_type");
+            this.tasks[index].iduser=info.iduser.toString();
+            this.tasks[index].user=this.searchAny(info.iduser,"user");
+            this.tasks[index].idpriority=info.idpriority.toString();
+            this.tasks[index].priority=this.searchAny(info.idpriority,"priority");
+            this.tasks[index].idstation=info.idstation.toString();
+            this.tasks[index].station=this.searchAny(info.idstation,"station");
+            this.tasks[index].iddevice=info.iddevice.toString();
+            this.tasks[index].device=this.searchAny(info.iddevice,"device");
+            this.tasks[index].idstatus=info.idstatus.toString();
+            this.tasks[index].status=this.searchAny(info.idstatus,"status");
             this.UpdateTable();
           });
         this.clearMe();
@@ -209,7 +227,59 @@ export class TaskComponent implements OnInit {
       iduser: element.iduser.toString(),
       idpriority: element.idpriority.toString(),
       idstation: element.idstation.toString(),
-      iddevice: element.iddevice.toString()
+      iddevice: element.iddevice.toString(),
+      estimated_date: element.estimated_date
     });
+  }
+
+  searchAny(id,type){
+    let a;
+    switch(type){
+      case "task_type":
+        this.tasks_types.forEach(element => {
+          if(element.idtask_type==id){
+            a=element.task_type;
+          }
+        });
+        break;
+      case "user":
+        this.users.forEach(element => {
+          if(element.iduser==id){
+            a=element.email;
+          }
+        });
+        break;
+      case "priority":
+        this.priorities.forEach(element => {
+          if(element.idpriority==id){
+            a=element.priority;
+          }
+        });
+        break;
+      case "station":
+        this.stations.forEach(element => {
+          if(element.idstation==id){
+            a=element.station;
+          }
+        });
+        break;
+      case "device":
+        this.devices.forEach(element => {
+          if(element.iddevice==id){
+            a=element.device;
+          }
+        });
+        break;
+      case "status":
+        this.statuses.forEach(element => {
+          if(element.idstatus==id){
+            a=element.status;
+          }
+        });
+        break;
+      default:
+        break;
+    }
+    return a;
   }
 }

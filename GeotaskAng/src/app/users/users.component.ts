@@ -278,6 +278,7 @@ export class UsersComponent implements OnInit {
           value.password_hash="";
           value.password_salt="";
           value.password="";
+          value['role']=this.searchRole(value.idrole);
           this.users.push(value);
           this.UpdateTable();
           if(info.idrole === 3){
@@ -352,6 +353,16 @@ export class UsersComponent implements OnInit {
     this.users.forEach(element => {
       if(element.iduser == iduser){
         a=element;
+      }
+    });
+    return a;
+  }
+
+  searchRole(idrole){
+    let a;
+    this.roles.forEach(element => {
+      if(element.idrole==idrole){
+        a=element.role;
       }
     });
     return a;

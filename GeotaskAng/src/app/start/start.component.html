@@ -1,9 +1,44 @@
 <mat-sidenav-container fullscreen>
-    <mat-sidenav #sidenav  [opened]="false">
-        <div  class="align" style="padding-top: 20px; padding-bottom: 20px;" >
-            <p >
-                Menu Principal
-            </p>
+    <mat-sidenav #sidenav mode="over" color="primary" [opened]="false">
+        <div  style="padding-top: 20px; padding-bottom: 20px;" class="sidenav-logo">
+            <svg version="1.1" class="svg-antares" width = "100%" height="150%" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 2330 460" style="enable-background:new 0 0 2330 460;" xml:space="preserve">
+       <style type="text/css">
+           .st0{fill:#FFFFFF;}
+       </style>
+       <g>
+           <g>
+               <g>
+                   <path class="st0" d="M1706.5,135.9h85.9v-30h-119.3V176c12.2,0.4,23.4,0.8,33.4,1.4v-10.6V135.9z"/>
+                   <path class="st0" d="M1673.2,217.1v43.8h119.3v-30h-85.9v-12.8C1694.6,217.8,1683.4,217.5,1673.2,217.1z"/>
+                   <path class="st0" d="M1436.3,170.8v-34.4h32.9c16.5,0,27.7,8.6,27.7,21.9c0,5.1-1.6,9.4-4.6,12.9c12.8,0.1,25.2,0.3,37.1,0.5
+                       c1.1-4.2,1.7-8.7,1.7-13.4c0-30.7-24.8-52.3-58.4-52.3h-69.7v64.8c1.4,0,2.8,0,4.2,0C1417.1,170.7,1426.8,170.7,1436.3,170.8z"/>
+                   <path class="st0" d="M1403.1,214.2v46.6h33.2v-46.6c-5.3,0-10.6,0-15.9,0C1414.6,214.3,1408.9,214.2,1403.1,214.2z"/>
+                   <path class="st0" d="M1496.3,260.8h37.9l-33.1-47c-12.2,0.1-24.8,0.2-37.7,0.3L1496.3,260.8z"/>
+                   <path class="st0" d="M953.7,135.9h48.3v-30H872.1v30h48.3v31.7c10.7-0.2,21.8-0.4,33.4-0.5V135.9z"/>
+                   <path class="st0" d="M920.4,214.2v46.6h33.4v-46.6c-5.5,0-10.9,0-16.5,0C931.6,214.3,926,214.2,920.4,214.2z"/>
+                   <path class="st0" d="M739.8,105.9h-33.4v69.9c10.9-0.2,22.1-0.4,33.4-0.6V105.9z"/>
+                   <path class="st0" d="M598.6,260.8h33.2v-38c-11.3,0-22.3-0.1-33.2-0.2V260.8z"/>
+                   <path class="st0" d="M302.7,260.8h37.2l12.3-32.5c-12.5,0.1-24.7,0.1-36.3,0.1L302.7,260.8z"/>
+                   <path class="st0" d="M466.2,260.8l-13.7-33.5c-12.2,0.2-24.3,0.3-36.1,0.5l12.3,33H466.2z"/>
+                   <path class="st0" d="M2043.7,184.1c-9.7-7.4-23.9-11.9-41.1-15.8c-23.9-5.4-33.2-9-33.2-20.3c0-9.2,8.6-16.7,22.8-16.7
+                       c14.9,0,30.4,6.1,44.2,17.1l17.4-23.9c-15.8-13.5-35.4-21.4-60.7-21.4c-33.8,0-57.3,19.6-57.3,48.3c0,15.4,6.2,25.3,16.5,32.3
+                       c4,0,8.1,0,12.1,0C1992,183.8,2018.6,183.9,2043.7,184.1z"/>
+                   <path class="st0" d="M1233.2,260.8h34.5l-8.9-21.9c-7.3-17.9,5.9-37.4,25.2-37.4c420.5,0.5,779.9,3.8,972.7,8.4
+                       c-194.7-14.4-559.4-24.5-985.3-25.9c-21.2-0.1-40.3-12.9-48.3-32.6l-18.5-45.5h-37.2l-18.5,45.4c-8,19.7-27.1,32.5-48.3,32.6
+                       c-443.8,0.9-826.2,11.2-1027.3,26c199.2-4.8,576.3-8.1,1014.8-8.4c19.3,0,32.5,19.5,25.2,37.4l-9,22h33.2l47.9-114.1
+                       L1233.2,260.8z"/>
+                   <path class="st0" d="M384.4,149l13.9,32.3c11.5-0.3,23.9-0.6,37.1-0.8l-32.3-74.5h-37.2l-33.7,77.9c10.2-0.6,23-1.2,37.9-1.7
+                       L384.4,149z"/>
+                   <path class="st0" d="M631.8,160.7l12.4,16.6c12.9-0.4,26.3-0.7,40.1-1l-52.5-70.4h-33.2v72.8c10.6-0.4,21.7-0.7,33.2-1.1V160.7z"
+                       />
+                   <path class="st0" d="M706.4,260.8h33.4v-38.1c-19.8,0.2-40.4,0.2-61.6,0.3L706.4,260.8z"/>
+                   <path class="st0" d="M1999.2,235.4c-18.3,0-34.1-6.7-48-17.9c-1.6,0-3.3-0.1-4.9-0.1l-17.2,20.5c18,16.7,42,25.7,68.8,25.7
+                       c36.1,0,58-17.8,60-45c-11.4,0-22.5-0.1-33.4-0.2C2024.2,227.9,2015.7,235.4,1999.2,235.4z"/>
+               </g>
+           </g>
+       </g>
+       </svg>
         </div>
         <div class="sidenav-content">
             <div class="sidenav-buttons">
@@ -40,6 +75,14 @@
                     </button>
                 </p>
                 <p>
+                    <button mat-button   [routerLink]="['companies']">
+                        <mat-icon color="primary">business</mat-icon>
+                        <span class="sidenav-items-adjust">
+                            Compañias
+                        </span>
+                    </button>
+                </p>
+                <p>
                     <button disabled mat-button   [routerLink]="['report']">
                         <mat-icon color="primary">assignment</mat-icon>
                         <span class="sidenav-items-adjust">
@@ -58,7 +101,7 @@
                 <button matTooltip="Menu de la aplicación" mat-icon-button aria-label="Example icon-button with a heart icon" (click)="sidenav.toggle()">
                     <mat-icon>menu</mat-icon>
                 </button>
-                <button matTooltip="Regresar al inicio" mat-button style="font-size: 20px;" [routerLink]="['home']">Geotask</button>
+                <button matTooltip="Regresar al inicio" mat-button style="font-size: 20px;" [routerLink]="['home']">Antares Cloud</button>
                 <span class="example-spacer"></span>
                 <mat-progress-spinner *ngIf="isLoading2" mode="indeterminate"></mat-progress-spinner>
                 <button matTooltip="Información sobre tu perfil" mat-button [matMenuTriggerFor]="menu">

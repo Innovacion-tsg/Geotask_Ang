@@ -1,365 +1,402 @@
 <style>
-    :host {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      font-size: 14px;
-      color: #333;
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 1;
+  }
   
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+  .toolbar img {
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo {
+    height: 40px;
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo:hover {
+    opacity: 0.8;
+  }
+
+  .content {
+    display: flex;
+    margin: 32px auto;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  svg.material-icons {
+    height: 24px;
+    width: auto;
+  }
+
+  svg.material-icons:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  .card svg.material-icons path {
+    fill: #888;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .card {
+    border-radius: 4px;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+    height: 40px;
+    width: 200px;
+    margin: 0 8px 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+  }
+
+  .card-container .card:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .card.card-small {
+    height: 16px;
+    width: 168px;
+  }
+
+  .card-container .card:not(.highlight-card) {
+    cursor: pointer;
+  }
+
+  .card-container .card:not(.highlight-card):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(black, 0.35);
+  }
+
+  .card-container .card:not(.highlight-card):hover .material-icons path {
+    fill: rgb(105, 103, 103);
+  }
+
+  .card.highlight-card {
+    background-color: #006064;
+    /* background-color: #11868a; */
+    color: white;
+    font-weight: 600;
+    border: none;
+    width: auto;
+    min-width: 30%;
+    position: relative;
+  }
+
+  .card.card.highlight-card span {
+    margin-left: 60px;
+  }
+
+  svg#rocket {
+    width: 80px;
+    position: absolute;
+    left: -10px;
+    top: -24px;
+  }
+
+  svg#rocket-smoke {
+    height: 100vh;
+    position: absolute;
+    top: 10px;
+    right: 180px;
+    z-index: -10;
+  }
+
+  a,
+  a:visited,
+  a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #125699;
+  }
+
+  .terminal {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 6px;
+    padding-top: 45px;
+    margin-top: 8px;
+    overflow: hidden;
+    background-color: rgb(15, 15, 16);
+  }
+
+  .terminal::before {
+    content: "\2022 \2022 \2022";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: rgb(58, 58, 58);
+    color: #c2c3c4;
+    width: 100%;
+    font-size: 2rem;
+    line-height: 0;
+    padding: 14px 0;
+    text-indent: 4px;
+  }
+
+  .terminal pre {
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    color: white;
+    padding: 0 1rem 1rem;
+    margin: 0;
+  }
+
+  .circle-link {
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    margin: 8px;
+    background-color: white;
+    border: 1px solid #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: 1s ease-out;
+  }
+
+  .circle-link:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+  svg#clouds {
+    position: fixed;
+    bottom: -160px;
+    left: -230px;
+    z-index: -10;
+    width: 1920px;
+  }
+
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+
+    .card-container > *:not(.circle-link) ,
+    .terminal {
+      width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+      height: 16px;
       margin: 8px 0;
     }
-  
-    p {
-      margin: 0;
-    }
-  
-    .spacer {
-      flex: 1;
-    }
-  
-    .toolbar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      background-color: #1976d2;
-      color: white;
-      font-weight: 600;
-    }
-  
-    .toolbar img {
-      margin: 0 16px;
-    }
-  
-    .toolbar #twitter-logo {
-      height: 40px;
-      margin: 0 16px;
-    }
-  
-    .toolbar #twitter-logo:hover {
-      opacity: 0.8;
-    }
-  
-    .content {
-      display: flex;
-      margin: 82px auto 32px;
-      padding: 0 16px;
-      max-width: 960px;
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    svg.material-icons {
-      height: 24px;
-      width: auto;
-    }
-  
-    svg.material-icons:not(:last-child) {
-      margin-right: 8px;
-    }
-  
-    .card svg.material-icons path {
-      fill: #888;
-    }
-  
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 16px;
-    }
-  
-    .card {
-      border-radius: 4px;
-      border: 1px solid #eee;
-      background-color: #fafafa;
-      height: 40px;
-      width: 200px;
-      margin: 0 8px 16px;
-      padding: 16px;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.2s ease-in-out;
-      line-height: 24px;
-    }
-  
-    .card-container .card:not(:last-child) {
-      margin-right: 0;
-    }
-  
-    .card.card-small {
-      height: 16px;
-      width: 168px;
-    }
-  
-    .card-container .card:not(.highlight-card) {
-      cursor: pointer;
-    }
-  
-    .card-container .card:not(.highlight-card):hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-    }
-  
-    .card-container .card:not(.highlight-card):hover .material-icons path {
-      fill: rgb(105, 103, 103);
-    }
-  
-    .card.highlight-card {
-      background-color: #1976d2;
-      color: white;
-      font-weight: 600;
-      border: none;
-      width: auto;
-      min-width: 30%;
-      position: relative;
-    }
-  
-    .card.card.highlight-card span {
-      margin-left: 60px;
-    }
-  
-    svg#rocket {
-      width: 80px;
-      position: absolute;
-      left: -10px;
-      top: -24px;
-    }
-  
-    svg#rocket-smoke {
-      height: calc(100vh - 95px);
-      position: absolute;
-      top: 10px;
-      right: 180px;
-      z-index: -10;
-    }
-  
-    a,
-    a:visited,
-    a:hover {
-      color: #1976d2;
-      text-decoration: none;
-    }
-  
-    a:hover {
-      color: #125699;
-    }
-  
-    .terminal {
-      position: relative;
-      width: 80%;
-      max-width: 600px;
-      border-radius: 6px;
-      padding-top: 45px;
-      margin-top: 8px;
-      overflow: hidden;
-      background-color: rgb(15, 15, 16);
-    }
-  
-    .terminal::before {
-      content: "\2022 \2022 \2022";
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 4px;
-      background: rgb(58, 58, 58);
-      color: #c2c3c4;
-      width: 100%;
-      font-size: 2rem;
-      line-height: 0;
-      padding: 14px 0;
-      text-indent: 4px;
-    }
-  
-    .terminal pre {
-      font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
-      color: white;
-      padding: 0 1rem 1rem;
-      margin: 0;
-    }
-  
-    .circle-link {
-      height: 40px;
-      width: 40px;
-      border-radius: 40px;
-      margin: 8px;
-      background-color: white;
-      border: 1px solid #eeeeee;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-      transition: 1s ease-out;
-    }
-  
-    .circle-link:hover {
-      transform: translateY(-0.25rem);
-      box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-    }
-  
-    footer {
-      margin-top: 8px;
-      display: flex;
-      align-items: center;
-      line-height: 20px;
-    }
-  
-    footer a {
-      display: flex;
-      align-items: center;
-    }
-  
-    .github-star-badge {
-      color: #24292e;
-      display: flex;
-      align-items: center;
-      font-size: 12px;
-      padding: 3px 10px;
-      border: 1px solid rgba(27,31,35,.2);
-      border-radius: 3px;
-      background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
-      margin-left: 4px;
-      font-weight: 600;
-      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
-    }
-  
-    .github-star-badge:hover {
-      background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
-      border-color: rgba(27,31,35,.35);
-      background-position: -.5em;
-    }
-  
-    .github-star-badge .material-icons {
-      height: 16px;
-      width: 16px;
-      margin-right: 4px;
-    }
-  
-    svg#clouds {
-      position: fixed;
-      bottom: -160px;
-      left: -230px;
-      z-index: -10;
-      width: 1920px;
-    }
-  
-  
-    /* Responsive Styles */
-    @media screen and (max-width: 767px) {
-  
-      .card-container > *:not(.circle-link) ,
-      .terminal {
-        width: 100%;
-      }
-  
-      .card:not(.highlight-card) {
-        height: 16px;
-        margin: 8px 0;
-      }
-  
-      .card.highlight-card span {
-        margin-left: 72px;
-      }
-  
-      svg#rocket-smoke {
-        right: 120px;
-        transform: rotate(-5deg);
-      }
-    }
-  
-    @media screen and (max-width: 575px) {
-      svg#rocket-smoke {
-        display: none;
-        visibility: hidden;
-      }
-    }
-  </style>
-  
 
+    .card.highlight-card span {
+      margin-left: 72px;
+    }
+
+    svg#rocket-smoke {
+      right: 120px;
+      transform: rotate(-5deg);
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+  }
+</style>
+  
   <div class="content" role="main">
 
-    
+    <!-- Highlight Card -->
+    <div class="card highlight-card card-small">
   
-    <!-- Resources -->
-    <h2>Bienvenido a Geotask</h2>
-    <p>Herramienta para seguimiento de nuestros tecnicos</p>
-    
+      <svg id="rocket" alt="Rocket Ship" xmlns="http://www.w3.org/2000/svg" width="101.678" height="101.678" viewBox="0 0 101.678 101.678">
+        <g id="Group_83" data-name="Group 83" transform="translate(-141 -696)">
+          <circle id="Ellipse_8" data-name="Ellipse 8" cx="50.839" cy="50.839" r="50.839" transform="translate(141 696)" fill="#11868a"/>
+        </g>
+      </svg>
+  
+      <span> Bienvenido a Antares!</span>
+  
+    </div>
+
     <div  class="login-position">
         <mat-card  class="login-card" [class.mat-elevation-z8]="true">
-            
-            <div class="login-card-content">
-                <div  class="login-card-logo">
-                 
-                
-                  <div class="login-card-questions">
-                      <form class="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
-                          <p>
-                            <mat-form-field appearance="outline">
-                              <mat-label>Usuario</mat-label>
-                              <input matInput class="form-control" id="user" formControlName="username" placeholder="Ingrese el usuario">
-                              <mat-icon matSuffix>account_circle</mat-icon>
-                              <mat-hint></mat-hint>
-                              <mat-error *ngIf="user.invalid">{{getErrorUser()}}</mat-error>
-                            </mat-form-field>
-                          </p>
-                          <p>
-                            <mat-form-field appearance="outline">
-                              <mat-label>Contraseña</mat-label>
-                              <input matInput type="password" class="form-control" id="password" formControlName="password" placeholder="Ingrese su contraseña">
-                              <mat-icon matSuffix>vpn_key</mat-icon>
-                              <mat-hint></mat-hint>
-                              <mat-error *ngIf="password.invalid">{{getErrorPassword()}}</mat-error>
-                            </mat-form-field>
-                          </p>
-                          <p style="padding: 3%;">
-                            {{ invalidLogin }}
-                          </p>
-                          <div>
-                            <div [hidden] = "isLoading" >
-                              <button  mat-raised-button color="primary" [class.mat-elevation-z5]="true">Acceder</button>
-                            
-                            </div>
-                            <div [hidden] = "!isLoading" >
-                              <button  style="text-decoration:none;
-                              font-weight: 600;
-                              font-size: 20px;
-                              color:#000000;
-                              padding-top:15px;
-                              padding-bottom:15px;
-                              padding-left:40px;
-                              padding-right:40px;
-                              background-color: transparent;
-                              border-width: 3px;
-                              border-style: solid;
-                              border-color: #ffffff;"  > <mat-spinner style="background-color: transparent" mat-raised-button  color="primary" diameter="40"></mat-spinner>
-                             </button>
-                            </div>
-   
-                            </div>
-                      </form>
-                  </div>
-                  
-                  
-                </div>
+          <mat-card-title style="font-size: small;">Versión</mat-card-title>
+          <mat-card-subtitle>2.5</mat-card-subtitle>
+          <div class="login-card-content">
+            <div  class="login-card-logo">
+              <svg  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 2330 460" style="enable-background:new 0 0 2330 460;" xml:space="preserve">
+                <style type="text/css">
+                  .st0{fill:#000000;}
+                  .st1{fill:#92EBF9;}
+                </style>
+                <g>
+                  <g>
+                    <path class="st0" d="M320.8,340L320.8,340c0-9.4,7-17,17.1-17c6.2,0,9.9,2.1,12.9,5.1l-4.6,5.3c-2.5-2.3-5.1-3.7-8.4-3.7
+                      c-5.5,0-9.5,4.6-9.5,10.2v0.1c0,5.6,3.9,10.3,9.5,10.3c3.7,0,6-1.5,8.6-3.8l4.6,4.6c-3.4,3.6-7.1,5.8-13.4,5.8
+                      C327.9,356.8,320.8,349.4,320.8,340z"/>
+                    <path class="st0" d="M426,323.5h24.7v6.4h-17.5v6.6h15.4v6.4h-15.4v6.9h17.8v6.4H426V323.5z"/>
+                    <path class="st0" d="M526.6,323.5h6.6l15.3,20.2v-20.2h7.1v32.7h-6.1l-15.9-20.8v20.8h-7.1V323.5z"/>
+                    <path class="st0" d="M640.4,330.1h-10v-6.6h27.1v6.6h-10v26.1h-7.2V330.1z"/>
+                    <path class="st0" d="M732.3,323.5h15c4.2,0,7.4,1.2,9.5,3.3c1.8,1.8,2.8,4.4,2.8,7.5v0.1c0,5.3-2.9,8.6-7,10.1l8,11.7h-8.4
+                      l-7-10.5h-0.1h-5.6v10.5h-7.2V323.5z M746.8,339.4c3.5,0,5.5-1.9,5.5-4.6v-0.1c0-3.1-2.2-4.7-5.7-4.7h-7.2v9.4H746.8z"/>
+                    <path class="st0" d="M833.9,340L833.9,340c0-9.4,7.3-17,17.4-17c10.1,0,17.4,7.5,17.4,16.8v0.1c0,9.3-7.3,16.9-17.4,16.9
+                      C841.2,356.8,833.9,349.3,833.9,340z M861.2,340L861.2,340c0-5.7-4.1-10.4-9.9-10.4c-5.8,0-9.8,4.6-9.8,10.2v0.1
+                      c0,5.6,4.1,10.3,9.9,10.3C857.2,350.2,861.2,345.6,861.2,340z"/>
+                    <path class="st0" d="M1027.6,323.5h12.8c10.3,0,17.4,7.1,17.4,16.3v0.1c0,9.2-7.1,16.4-17.4,16.4h-12.8V323.5z M1040.4,349.7
+                      c5.9,0,9.9-4,9.9-9.8v-0.1c0-5.8-4-9.9-9.9-9.9h-5.6v19.7H1040.4z"/>
+                    <path class="st0" d="M1133.5,323.5h24.7v6.4h-17.5v6.6h15.4v6.4h-15.4v6.9h17.8v6.4h-24.9V323.5z"/>
+                    <path class="st0" d="M1328.6,323.3h6.6l14,33h-7.5l-3-7.3h-13.8l-3,7.3h-7.3L1328.6,323.3z M1336.1,342.5l-4.4-10.6l-4.3,10.6
+                      H1336.1z"/>
+                    <path class="st0" d="M1423.5,323.5h6.6l15.3,20.2v-20.2h7.1v32.7h-6.1l-15.9-20.8v20.8h-7.1V323.5z"/>
+                    <path class="st0" d="M1541,323.3h6.6l14,33h-7.5l-3-7.3h-13.8l-3,7.3h-7.3L1541,323.3z M1548.5,342.5l-4.4-10.6l-4.3,10.6H1548.5z
+                      M1546.6,312.7l6.1,2.7l-6,5.6h-5.4L1546.6,312.7z"/>
+                    <path class="st0" d="M1635.9,323.5h7.2v26.2h16.3v6.6h-23.5V323.5z"/>
+                    <path class="st0" d="M1734.4,323.5h7.2v32.7h-7.2V323.5z"/>
+                    <path class="st0" d="M1816.8,351.5l4.3-5.1c2.9,2.4,6,4,9.8,4c2.9,0,4.7-1.2,4.7-3.1v-0.1c0-1.8-1.1-2.8-6.6-4.2
+                      c-6.6-1.7-10.9-3.5-10.9-10v-0.1c0-5.9,4.8-9.9,11.5-9.9c4.8,0,8.8,1.5,12.2,4.2l-3.7,5.4c-2.9-2-5.8-3.2-8.5-3.2
+                      s-4.2,1.3-4.2,2.9v0.1c0,2.2,1.4,2.9,7.1,4.3c6.6,1.7,10.4,4.1,10.4,9.8v0.1c0,6.5-5,10.2-12,10.2
+                      C1825.8,356.7,1820.8,355,1816.8,351.5z"/>
+                    <path class="st0" d="M1918.6,323.5h7.2v32.7h-7.2V323.5z"/>
+                    <path class="st0" d="M2001,351.5l4.3-5.1c2.9,2.4,6,4,9.8,4c2.9,0,4.7-1.2,4.7-3.1v-0.1c0-1.8-1.1-2.8-6.6-4.2
+                      c-6.6-1.7-10.9-3.5-10.9-10v-0.1c0-5.9,4.8-9.9,11.5-9.9c4.8,0,8.8,1.5,12.2,4.2l-3.7,5.4c-2.9-2-5.8-3.2-8.5-3.2
+                      s-4.2,1.3-4.2,2.9v0.1c0,2.2,1.4,2.9,7.1,4.3c6.6,1.7,10.4,4.1,10.4,9.8v0.1c0,6.5-5,10.2-12,10.2
+                      C2009.9,356.7,2004.9,355,2001,351.5z"/>
+                  </g>
+                  <g>
+                    <g>
+                      <path class="st0" d="M1706.5,135.9h85.9v-30h-119.3V176c12.2,0.4,23.4,0.8,33.4,1.4v-10.6V135.9z"/>
+                      <path class="st0" d="M1673.2,217.1v43.8h119.3v-30h-85.9v-12.8C1694.6,217.8,1683.4,217.5,1673.2,217.1z"/>
+                      <path class="st0" d="M1436.3,170.8v-34.4h32.9c16.5,0,27.7,8.6,27.7,21.9c0,5.1-1.6,9.4-4.6,12.9c12.8,0.1,25.2,0.3,37.1,0.5
+                        c1.1-4.2,1.7-8.7,1.7-13.4c0-30.7-24.8-52.3-58.4-52.3h-69.7v64.8c1.4,0,2.8,0,4.2,0C1417.1,170.7,1426.8,170.7,1436.3,170.8z"/>
+                      <path class="st0" d="M1403.1,214.2v46.6h33.2v-46.6c-5.3,0-10.6,0-15.9,0C1414.6,214.3,1408.9,214.2,1403.1,214.2z"/>
+                      <path class="st0" d="M1496.3,260.8h37.9l-33.1-47c-12.2,0.1-24.8,0.2-37.7,0.3L1496.3,260.8z"/>
+                      <path class="st0" d="M953.7,135.9h48.3v-30H872.1v30h48.3v31.7c10.7-0.2,21.8-0.4,33.4-0.5V135.9z"/>
+                      <path class="st0" d="M920.4,214.2v46.6h33.4v-46.6c-5.5,0-10.9,0-16.5,0C931.6,214.3,926,214.2,920.4,214.2z"/>
+                      <path class="st0" d="M739.8,105.9h-33.4v69.9c10.9-0.2,22.1-0.4,33.4-0.6V105.9z"/>
+                      <path class="st0" d="M598.6,260.8h33.2v-38c-11.3,0-22.3-0.1-33.2-0.2V260.8z"/>
+                      <path class="st0" d="M302.7,260.8h37.2l12.3-32.5c-12.5,0.1-24.7,0.1-36.3,0.1L302.7,260.8z"/>
+                      <path class="st0" d="M466.2,260.8l-13.7-33.5c-12.2,0.2-24.3,0.3-36.1,0.5l12.3,33H466.2z"/>
+                      <path class="st0" d="M2043.7,184.1c-9.7-7.4-23.9-11.9-41.1-15.8c-23.9-5.4-33.2-9-33.2-20.3c0-9.2,8.6-16.7,22.8-16.7
+                        c14.9,0,30.4,6.1,44.2,17.1l17.4-23.9c-15.8-13.5-35.4-21.4-60.7-21.4c-33.8,0-57.3,19.6-57.3,48.3c0,15.4,6.2,25.3,16.5,32.3
+                        c4,0,8.1,0,12.1,0C1992,183.8,2018.6,183.9,2043.7,184.1z"/>
+                      <path class="st1" d="M1233.2,260.8h34.5l-8.9-21.9c-7.3-17.9,5.9-37.4,25.2-37.4c420.5,0.5,779.9,3.8,972.7,8.4
+                        c-194.7-14.4-559.4-24.5-985.3-25.9c-21.2-0.1-40.3-12.9-48.3-32.6l-18.5-45.5h-37.2l-18.5,45.4c-8,19.7-27.1,32.5-48.3,32.6
+                        c-443.8,0.9-826.2,11.2-1027.3,26c199.2-4.8,576.3-8.1,1014.8-8.4c19.3,0,32.5,19.5,25.2,37.4l-9,22h33.2l47.9-114.1
+                        L1233.2,260.8z"/>
+                      <path class="st0" d="M384.4,149l13.9,32.3c11.5-0.3,23.9-0.6,37.1-0.8l-32.3-74.5h-37.2l-33.7,77.9c10.2-0.6,23-1.2,37.9-1.7
+                        L384.4,149z"/>
+                      <path class="st0" d="M631.8,160.7l12.4,16.6c12.9-0.4,26.3-0.7,40.1-1l-52.5-70.4h-33.2v72.8c10.6-0.4,21.7-0.7,33.2-1.1V160.7z"
+                        />
+                      <path class="st0" d="M706.4,260.8h33.4v-38.1c-19.8,0.2-40.4,0.2-61.6,0.3L706.4,260.8z"/>
+                      <path class="st0" d="M1999.2,235.4c-18.3,0-34.1-6.7-48-17.9c-1.6,0-3.3-0.1-4.9-0.1l-17.2,20.5c18,16.7,42,25.7,68.8,25.7
+                        c36.1,0,58-17.8,60-45c-11.4,0-22.5-0.1-33.4-0.2C2024.2,227.9,2015.7,235.4,1999.2,235.4z"/>
+                    </g>
+                  </g>
+                </g>
+              </svg>
             </div>
+
+            <div class="login-card-questions">
+                <form class="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+                    <p>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput class="form-control" id="user" formControlName="username" placeholder="Ingrese el usuario">
+                        <mat-icon matSuffix>account_circle</mat-icon>
+                        <mat-hint></mat-hint>
+                        <mat-error *ngIf="user.invalid">{{getErrorUser()}}</mat-error>
+                      </mat-form-field>
+                    </p>
+                    <p>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput type="password" class="form-control" id="password" formControlName="password" placeholder="Ingrese su contraseña">
+                        <mat-icon matSuffix>vpn_key</mat-icon>
+                        <mat-hint></mat-hint>
+                        <mat-error *ngIf="password.invalid">{{getErrorPassword()}}</mat-error>
+                      </mat-form-field>
+                    </p>
+                    <p style="padding: 3%;">
+                      {{ invalidLogin }}
+                    </p>
+                    <div>
+                      <div [hidden] = "isLoading" >
+                        <button  mat-raised-button color="primary" [class.mat-elevation-z5]="true">Acceder</button>
+                      
+                      </div>
+                      <div [hidden] = "!isLoading" >
+                        <button  style="text-decoration:none;
+                        font-weight: 600;
+                        font-size: 20px;
+                        color:#000000;
+                        padding-top:15px;
+                        padding-bottom:15px;
+                        padding-left:40px;
+                        padding-right:40px;
+                        background-color: transparent;
+                        border-width: 3px;
+                        border-style: solid;
+                        border-color: #ffffff;"  > <mat-spinner style="background-color: transparent" mat-raised-button  color="primary" diameter="40"></mat-spinner>
+                        </button>
+                      </div>
+
+                      </div>
+                </form>
+            </div>
+          </div>
         </mat-card>
     </div>
     
     <div class="stars"></div>
+    <div class="twinkling"></div>
 
     <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
       <path id="Path_39" data-name="Path 39" d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z" transform="translate(142.69 -634.312)" fill="#eee"/>

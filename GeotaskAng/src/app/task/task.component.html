@@ -6,10 +6,8 @@
       <mat-label>Filtro</mat-label>
       <input  matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Admin" #input>
     </mat-form-field>
-    <button style="position:relative ;left:20px;" class="mdc-button" (click)=toggleCreate()>
-      <span class="mdc-button__ripple"></span>
-      <i class="material-icons mdc-button__icon" aria-hidden="true" style="color: green">add_box</i>
-      <span class="mdc-button__label">Crear Tarea</span>
+    <button mat-icon-button style="position:relative ;left:20px;color:green" (click)=toggleCreate() aria-label="Crear Usuario">
+      <mat-icon>add_box</mat-icon>
     </button>
     </div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
@@ -130,6 +128,14 @@
             <mat-select name="iddevice" class="form-control" id="iddevice" formControlName="iddevice">
                 <mat-option *ngFor="let device of devices" value="{{device.iddevice}}">{{device.device}}</mat-option>
             </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Escoja una fecha estimada</mat-label>
+          <input matInput [matDatepicker]="picker" name="estimated_date" id="estimated_date" formControlName="estimated_date" class="form-control">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </p>
       <p>

@@ -6,10 +6,8 @@
         <mat-label>Filtro</mat-label>
         <input  matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Admin" #input>
       </mat-form-field>
-      <button style="position:relative ;left:20px;" class="mdc-button" (click)=toggleCreate()>
-        <span class="mdc-button__ripple"></span>
-        <i class="material-icons mdc-button__icon" aria-hidden="true" style="color: green">add_box</i>
-        <span class="mdc-button__label">Crear Sede</span>
+      <button mat-icon-button style="position:relative ;left:20px;color:green" (click)=toggleCreate() aria-label="Crear Usuario">
+        <mat-icon>add_box</mat-icon>
       </button>
       </div>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>

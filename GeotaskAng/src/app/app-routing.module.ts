@@ -8,6 +8,7 @@ import { TaskComponent} from './task/task.component';
 import { UsersComponent} from './users/users.component';
 import { ReportComponent} from './report/report.component';
 import { StationsComponent } from './stations/stations.component';
+import { CompaniesComponent } from './companies/companies.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch:'full'},
@@ -33,6 +34,10 @@ const routes: Routes = [
     {
       path: 'stations',
       component: StationsComponent
+    },
+    {
+      path: 'companies',
+      component: CompaniesComponent
     }
   ]},
   {path: '**', component: NotFoundComponent}
