@@ -5,6 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import{ GlobalConstants } from '../global-constants';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorSnackbarComponent } from 'src/app/home/error-snackbar/error-snackbar.component';
 
 @Component({
   selector: 'app-task',
@@ -28,7 +30,7 @@ export class TaskComponent implements OnInit {
   element;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private http: HttpClient,private formBuilder: FormBuilder) {
+  constructor(private http: HttpClient,private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
   
   }
 
@@ -163,7 +165,6 @@ export class TaskComponent implements OnInit {
           }),
           responseType: 'json'
         }).subscribe(response => {
-          debugger;
           let value : any = response;
           value.status=this.searchAny(info.idstatus,"status");
           value.task_type=this.searchAny(info.idtask_type,"task_type");
@@ -174,6 +175,7 @@ export class TaskComponent implements OnInit {
           this.tasks.push(value);
           this.UpdateTable();
           this.clearMe();
+          this.openSnackBar('Se ha creado la tarea de forma exitosa!','success');
         });
       }else{
         let s=this.findTask(this.element.idtask);
@@ -203,9 +205,12 @@ export class TaskComponent implements OnInit {
             this.tasks[index].idstatus=info.idstatus.toString();
             this.tasks[index].status=this.searchAny(info.idstatus,"status");
             this.UpdateTable();
+            this.openSnackBar('Se ha modificado la tarea de forma exitosa!','success');
           });
         this.clearMe();
       }
+    }else{
+      this.openSnackBar('El formulario esta incompleto','error');
     }
   }
 
@@ -281,5 +286,13 @@ export class TaskComponent implements OnInit {
         break;
     }
     return a;
+  }
+
+  openSnackBar(Message: string,option: string) {
+    this.snackBar.openFromComponent(ErrorSnackbarComponent, {
+      duration: 5* 1000,
+      data: Message,
+      panelClass : [option]
+    });
   }
 }

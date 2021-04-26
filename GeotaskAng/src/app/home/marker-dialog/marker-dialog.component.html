@@ -1,0 +1,45 @@
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <!-- <span class="icon-dialog-position">
+          <mat-icon class="icon-dialog" color="white" aria-hidden="false" aria-label="Example thumbs up SVG icon">memory</mat-icon>
+      </span> -->
+    <span cdkDragHandle style="cursor: move;">
+      Zona: {{data.data.identification}}
+    </span>
+    <span style="float: right;">
+      <!-- <button style="max-width: 20%; max-height: 20%;" [inline]="true" color="white" mat-fab> -->
+      <mat-icon matTooltip="Minimizar ventana" matRippleUnbounded="true" matRipple matRippleColor="rgba(255, 255, 255, 0.514)"  (click)="minimizeWindow()" *ngIf="minimizedWindow === false" style="cursor: context-menu;"
+        aria-hidden="false" aria-label="Example home icon">remove_circle</mat-icon>
+      <mat-icon matTooltip="Maximizar ventana" matRippleUnbounded="true" matRipple matRippleColor="rgba(255, 255, 255, 0.514)" (click)="minimizeWindow()" *ngIf="minimizedWindow" style="cursor: context-menu;" aria-hidden="false"
+        aria-label="Example home icon">add_circle</mat-icon>
+      <mat-icon style="cursor: move; font-size: 29px; padding-left: 5px;" cdkDragHandle aria-hidden="false" aria-label="Example home icon">
+        open_with</mat-icon>
+    </span>
+  </h1>
+  <div *ngIf="minimizedWindow === false">
+    <div mat-dialog-content>
+      <ng-template mat-tab-label>
+        <mat-icon color="primary" class="example-tab-icon">business</mat-icon>
+        Sede
+      </ng-template>
+      <div class="header-sede-area">
+        <div class="description-sede">
+          <p><span class="primary-color">Estación: </span> {{data.data.station}}</p>
+          <p><span class="primary-color">Direccion: </span> {{data.data.address}}</p>
+          <p><span class="primary-color">Telefono: </span> {{data.data.phone}}</p>
+          <p><span class="primary-color">Coordenadas(Lon, Lat): </span> {{data.data.longitude}},
+            {{data.data.latitude}}</p>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <div class="centered-buttons">
+        <button class="mat-elevation-z5" mat-raised-button color="primary" (click)="Close()">
+          <mat-icon color="white" aria-hidden="false" aria-label="Example thumbs up SVG icon">close</mat-icon>Cerrar
+        </button>
+        <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
+        <!-- <button mat-stroked-button color="primary">
+        Ver gráfica
+      </button> -->
+      </div>
+    </div>
+  </div>

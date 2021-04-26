@@ -5,6 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import{ GlobalConstants } from '../global-constants';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorSnackbarComponent } from 'src/app/home/error-snackbar/error-snackbar.component';
 
 @Component({
   selector: 'app-stations',
@@ -23,7 +25,7 @@ export class StationsComponent implements OnInit {
   element;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private http: HttpClient,private formBuilder: FormBuilder) {
+  constructor(private http: HttpClient,private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
   
   }
 
@@ -122,6 +124,7 @@ export class StationsComponent implements OnInit {
           this.stations.push(value);
           this.UpdateTable();
           this.clearMe();
+          this.openSnackBar('Se ha creado la sede de forma exitosa!','success');
         });
       }else{
         info.is_active=this.element.is_active;
@@ -143,9 +146,12 @@ export class StationsComponent implements OnInit {
             this.stations[index].city=this.searchCity(info.idcity);
             this.stations[index].phone=info.phone;
             this.UpdateTable();
+            this.openSnackBar('Se ha modificado la sede de forma exitosa!','success');
           });
         this.clearMe();
       }
+    }else{
+      this.openSnackBar('El formulario se encuentra incompleto!','error');
     }
   }
 
@@ -166,6 +172,7 @@ export class StationsComponent implements OnInit {
       this.stations[index].is_active=false;
       this.UpdateTable();
       this.isLoading = false;
+      this.openSnackBar('Se ha eliminado el registro de forma exitosa!','success');
     });
   }
 
@@ -195,5 +202,13 @@ export class StationsComponent implements OnInit {
       }
     });
     return a;
+  }
+
+  openSnackBar(Message: string,option: string) {
+    this.snackBar.openFromComponent(ErrorSnackbarComponent, {
+      duration: 5* 1000,
+      data: Message,
+      panelClass : [option]
+    });
   }
 }

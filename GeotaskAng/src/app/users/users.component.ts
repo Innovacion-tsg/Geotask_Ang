@@ -5,6 +5,9 @@ import { MatSort } from '@angular/material/sort';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import{ GlobalConstants } from '../global-constants';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorSnackbarComponent } from 'src/app/home/error-snackbar/error-snackbar.component';
+
 interface companiesObj{
   idcompany: Int16Array;
   company: String;
@@ -40,7 +43,7 @@ export class UsersComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private http: HttpClient,private formBuilder: FormBuilder) {
+  constructor(private http: HttpClient,private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
   
   }
 
@@ -245,6 +248,7 @@ export class UsersComponent implements OnInit {
       this.users[index].is_active=false;
       this.UpdateTable();
       this.isLoading = false;
+      this.openSnackBar('Se ha eliminado el registro de forma satisfactoria!','success');
     });
   }
 
@@ -281,6 +285,7 @@ export class UsersComponent implements OnInit {
           value['role']=this.searchRole(value.idrole);
           this.users.push(value);
           this.UpdateTable();
+          this.openSnackBar('Se ha creado el usuario de forma correcta!','success');
           if(info.idrole === 3){
             info.iduser = value.iduser;
             info.phone = info.phone.toString();
@@ -315,6 +320,7 @@ export class UsersComponent implements OnInit {
             this.users[index].first_name=info.first_name;
             this.users[index].last_name=info.last_name;
             this.users[index].idrole=info.idrole.toString();
+            this.openSnackBar('Se ha modificado el usuario de forma correcta!','success');
             this.UpdateTable();
             if(info.idrole === 3){
               info.phone = info.phone.toString();
@@ -336,6 +342,8 @@ export class UsersComponent implements OnInit {
           });
         this.clearMe();
       }
+    }else{
+      this.openSnackBar('El formulario esta incompleto','error');
     }
   }
 
@@ -366,6 +374,14 @@ export class UsersComponent implements OnInit {
       }
     });
     return a;
+  }
+
+  openSnackBar(Message: string,option: string) {
+    this.snackBar.openFromComponent(ErrorSnackbarComponent, {
+      duration: 5* 1000,
+      data: Message,
+      panelClass : [option]
+    });
   }
 }
 

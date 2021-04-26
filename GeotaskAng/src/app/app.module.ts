@@ -47,6 +47,7 @@ import { TaskComponent } from './task/task.component';
 import { ReportComponent } from './report/report.component';
 import { StationsComponent } from './stations/stations.component';
 import { CompaniesComponent } from './companies/companies.component';
+import { MarkerDialogComponent } from './home/marker-dialog/marker-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +60,8 @@ import { CompaniesComponent } from './companies/companies.component';
     TaskComponent,
     ReportComponent,
     StationsComponent,
-    CompaniesComponent
+    CompaniesComponent,
+    MarkerDialogComponent
   ],
   imports: [
     BrowserModule,
