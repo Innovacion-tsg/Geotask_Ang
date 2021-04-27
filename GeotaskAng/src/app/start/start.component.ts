@@ -20,7 +20,8 @@ export class StartComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('user')){
-      this.user = JSON.parse(localStorage.getItem('user'));
+      debugger;
+      this.user =JSON.parse(localStorage.getItem('user'));
     }else{
       this.router.navigate(['/login']);
     }
@@ -44,6 +45,7 @@ export class StartComponent implements OnInit {
   }
   logOut(): void {
       this.router.navigate(['/login']);
+      localStorage.removeItem('user');
       this.isLoading = false;
   }
 

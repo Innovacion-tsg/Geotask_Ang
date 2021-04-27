@@ -1,3 +1,21 @@
 <!--<div id="map" class="map"></div>-->
 <!--<div id="hotel_map"></div>-->
 <div id="map" class="map"></div>
+
+<div style="z-index:15; position: absolute; ;display:flex; align-self:flex-end; bottom:5%; right:3%;">
+    <button mat-fab color="primary" class="mat-elevation-z8" matTooltip="Configuracion" (click)="openSettings()">
+      <mat-icon aria-label="Configuracion de objetos">settings</mat-icon>
+    </button>
+</div>
+
+<div style="z-index:15; position: absolute; ;display:flex; align-self:flex-end; bottom:15%; right:3%;">
+    <button mat-fab color="primary" class="mat-elevation-z8" matTooltip="Cuenta" (click)="openSettings()" [matMenuTriggerFor]="menu">
+      <mat-icon aria-label="Configuracion de objetos">account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">        
+    <button mat-menu-item color="primary" (click)="openSettings()">
+        <mat-icon color="primary">exit_to_app</mat-icon>
+        <span>Salir</span>
+    </button>
+    </mat-menu>
+</div>

@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import{ GlobalConstants } from '../global-constants';
 
 import { MarkerDialogComponent } from './marker-dialog/marker-dialog.component';
+import { ConfigurationComponent } from '../configuration/configuration.component';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import VectorLayer from 'ol/layer/Vector';
@@ -132,6 +133,15 @@ export class HomeComponent implements OnInit {
         data: feature.values_
       });
     }
+  }
+
+  openSettings(){
+    this.markerDialog.open(ConfigurationComponent,{
+      id: 'configuration',
+      width: '90%',
+      disableClose: true,
+      hasBackdrop: false
+    });
   }
 
 }

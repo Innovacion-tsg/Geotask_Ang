@@ -1,0 +1,32 @@
+<button style="position:relative; top:1%; right:1%; color:black" mat-icon-button (click)=Close() aria-label="Cerrar">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>
+        <button mat-menu-item color="primary" (click)="openSettings()">
+            <mat-icon color="primary">exit_to_app</mat-icon>
+            <span>Salir</span>
+        </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <button mat-button  [routerLink]="['task']">
+            <mat-icon color="primary">task</mat-icon>
+            <span class="sidenav-items-adjust">
+                Tareas
+            </span>
+        </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <button mat-menu-item [routerLink]="['task']">
+            <mat-icon color="primary">task</mat-icon>
+            <span class="sidenav-items-adjust">
+                Tareas
+            </span>
+        </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <button mat-button  [routerLink]="['task']">
+            <mat-icon color="primary">task</mat-icon>
+        </button>
+    </mat-grid-tile>
+  </mat-grid-list>

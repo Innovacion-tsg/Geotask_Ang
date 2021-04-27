@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators, EmailValidator } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -70,10 +70,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    let credentials = JSON.stringify(this.form.value);
+    let cred = this.form.value;
     this.isLoading = true;
     localStorage.clear();
-    localStorage.setItem('user', "{\"token\":\"d7b476da18fc18b93bd7f056c65f2ed2d35f9ae5\",\"first_name\":\"Diego\",\"email\":\"desarrollo2@tsg.net.co\",\"is_staff\":true,\"username\":\"diegoariasm233\"}")
+    cred= JSON.stringify(cred);
+    localStorage.setItem('user', cred);
     this.router.navigate(['/start']);
     this.isLoading = false;
   }
