@@ -6,6 +6,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import{ GlobalConstants } from '../global-constants';
 
+import { Router } from '@angular/router';
 import { MarkerDialogComponent } from './marker-dialog/marker-dialog.component';
 import { ConfigurationComponent } from '../configuration/configuration.component';
 import Map from 'ol/Map';
@@ -40,7 +41,7 @@ export class HomeComponent implements OnInit {
   vectorLayer;
   SNACKBAR_DURATION = 5;
 
-  constructor(private http: HttpClient,private markerDialog:MatDialog, private snackBar: MatSnackBar){
+  constructor(private http: HttpClient,private markerDialog:MatDialog, private snackBar: MatSnackBar,private router: Router){
 
   }
 
@@ -136,12 +137,12 @@ export class HomeComponent implements OnInit {
   }
 
   openSettings(){
-    this.markerDialog.open(ConfigurationComponent,{
-      id: 'configuration',
-      width: '90%',
-      disableClose: true,
-      hasBackdrop: false
-    });
+    this.router.navigate(['/config']);
   }
 
+  logOut(): void {
+    this.router.navigate(['/login']);
+    localStorage.removeItem('user');
+    this.isLoading = false;
+  }
 }

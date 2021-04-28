@@ -7,6 +7,7 @@ import{ GlobalConstants } from '../global-constants';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorSnackbarComponent } from 'src/app/home/error-snackbar/error-snackbar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task',
@@ -30,7 +31,7 @@ export class TaskComponent implements OnInit {
   element;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private http: HttpClient,private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
+  constructor(private http: HttpClient,private formBuilder: FormBuilder, private snackBar: MatSnackBar,private router: Router) {
   
   }
 
@@ -294,5 +295,9 @@ export class TaskComponent implements OnInit {
       data: Message,
       panelClass : [option]
     });
+  }
+
+  goBack(){
+    this.router.navigate(['/config']);
   }
 }

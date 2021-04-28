@@ -2,14 +2,16 @@
     /* width: 100%; */
     width: 100%;
     /* height: 93.5vh; */
-    height:  93.6vh;
+    height:  100%;
 }
 
 br {
     display: block;
     margin-top: 1px;
 }
-#hotel_map {
-    height: 93.6vh;
-    width: 100%;
-}
+
+.sidenav-logo {
+    max-width: 200px;
+    padding-bottom: 20px;
+  }
+  

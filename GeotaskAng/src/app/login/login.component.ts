@@ -19,7 +19,11 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
-    this.buildForm();
+    if(localStorage.getItem('user')==null){
+      this.buildForm();
+    }else{  
+      this.router.navigate(['/home']);
+    }
   }
 
   buildForm(){
@@ -75,7 +79,7 @@ export class LoginComponent implements OnInit {
     localStorage.clear();
     cred= JSON.stringify(cred);
     localStorage.setItem('user', cred);
-    this.router.navigate(['/start']);
+    this.router.navigate(['/home']);
     this.isLoading = false;
   }
 }

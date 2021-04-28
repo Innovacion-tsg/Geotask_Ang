@@ -1,32 +1,27 @@
-<button style="position:relative; top:1%; right:1%; color:black" mat-icon-button (click)=Close() aria-label="Cerrar">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
-<mat-grid-list cols="2" rowHeight="2:1">
+<mat-grid-list cols="2" rowHeight="2:1" style="background-color: black;">
     <mat-grid-tile>
-        <button mat-menu-item color="primary" (click)="openSettings()">
-            <mat-icon color="primary">exit_to_app</mat-icon>
-            <span>Salir</span>
+        <button mat-button  (click)=go(1)>
+            <mat-icon class="config"  color="accent">people</mat-icon>
         </button>
     </mat-grid-tile>
     <mat-grid-tile>
-        <button mat-button  [routerLink]="['task']">
-            <mat-icon color="primary">task</mat-icon>
-            <span class="sidenav-items-adjust">
-                Tareas
-            </span>
+        <button mat-button  (click)=go(2)>
+            <mat-icon  class="config"  color="accent">account_balance</mat-icon>
         </button>
     </mat-grid-tile>
     <mat-grid-tile>
-        <button mat-menu-item [routerLink]="['task']">
-            <mat-icon color="primary">task</mat-icon>
-            <span class="sidenav-items-adjust">
-                Tareas
-            </span>
+        <button mat-button  (click)=go(3)>
+            <mat-icon class="config" color="accent">business</mat-icon>
         </button>
     </mat-grid-tile>
     <mat-grid-tile>
-        <button mat-button  [routerLink]="['task']">
-            <mat-icon color="primary">task</mat-icon>
+        <button  mat-button  (click)=go(4)>
+            <mat-icon class="config" color="accent">task</mat-icon>
         </button>
     </mat-grid-tile>
-  </mat-grid-list>
+</mat-grid-list>
+<button style="position:absolute; top:1%; left:1%;" mat-icon-button (click)=go(5) aria-label="Cerrar">
+    <mat-icon color="accent">arrow_back</mat-icon>
+</button>
+
+

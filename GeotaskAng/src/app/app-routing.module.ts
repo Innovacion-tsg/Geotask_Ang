@@ -9,37 +9,39 @@ import { UsersComponent} from './users/users.component';
 import { ReportComponent} from './report/report.component';
 import { StationsComponent } from './stations/stations.component';
 import { CompaniesComponent } from './companies/companies.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch:'full'},
   {path: 'login', component: LoginComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'start', component: StartComponent, children: [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     {
       path: 'home',
       component: HomeComponent
-    },
-    {
-      path: 'task',
-      component: TaskComponent
-    },
-    {
-      path: 'users',
-      component: UsersComponent
-    },
-    {
-      path: 'report',
-      component: ReportComponent
-    },
-    {
-      path: 'stations',
-      component: StationsComponent
-    },
-    {
-      path: 'companies',
-      component: CompaniesComponent
     }
   ]},
+  {
+    path: 'config', 
+    component: ConfigurationComponent
+  },
+  {
+    path: 'task',
+    component: TaskComponent
+  },
+  {
+    path: 'users',
+    component: UsersComponent
+  },
+  {
+    path: 'stations',
+    component: StationsComponent
+  },
+  {
+    path: 'companies',
+    component: CompaniesComponent
+  },
   {path: '**', component: NotFoundComponent}
 
 ];

@@ -20,7 +20,6 @@ export class StartComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('user')){
-      debugger;
       this.user =JSON.parse(localStorage.getItem('user'));
     }else{
       this.router.navigate(['/login']);
